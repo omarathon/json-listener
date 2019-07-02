@@ -1,10 +1,16 @@
+/*
+    Listens for the creation of .json files in a given directory,
+    and automatically uploads them to a Google Firebase, utilising FirebasePostJson.
+    Reference: https://github.com/omarathon/firebase-post-json/
+
+    Author: Omar Tanner, 2019 -- open source.
+*/
+
 import lib.firebasepostjson.FirebasePostJson;
 import lib.firebasepostjson.lib.FirebaseConnection;
 import net.thegreshams.firebase4j.error.FirebaseException;
 import net.thegreshams.firebase4j.error.JacksonUtilityException;
-
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.*;
