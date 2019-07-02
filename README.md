@@ -63,3 +63,7 @@ One may use this tool by adding the above dependencies to their project, and sto
 One may find all of the auxiliary files within the **lib** directory.
 
  - **firebasepostjson** - This directory stores the required files for [FirebasePostJson](https://github.com/omarathon/firebase-post-json).
+ 
+## Recommendation
+
+One is recommended only to use this tool within prototype systems - *it may not be safe for production*.
