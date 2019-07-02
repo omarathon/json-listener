@@ -52,7 +52,7 @@ Below are the dependencies and repositories within the **pom.xml** when developi
 
 ## Usage
 
-One may use this tool by adding the above dependencies to their project, and storing **JsonListener.java**, as well as the **files within lib**, somewhere within their project (note that within lib there is **firebasepostjson**. Then they may proceed to interact with **JsonListener** in an *examplar fashion* shown within **Example.java**.
+One may use this tool by adding the above dependencies to their project, and storing **JsonListener.java**, as well as the **files within lib**, somewhere within their project. Then they may proceed to interact with **JsonListener** in an *examplar fashion* shown within **Example.java**.
 
 ## Main Files
  - **JsonListener.java** - The central file, listens in a directory indefinitely and posts a JSON file to a Google Firebase when a json file is created there.
