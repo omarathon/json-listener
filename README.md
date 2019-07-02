@@ -1,6 +1,3 @@
-# json-listener
-Listens for the creation of .json files in a directory and automatically uploads them to a Google Firebase database
-
 # # json-listener
 
 A tool to *indefinitely listen to the creation of .json files in a directory* and *automatically upload them to a Google Firebase*, utilising **FirebasePostJson**.
