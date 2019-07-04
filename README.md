@@ -36,7 +36,7 @@ There are additional parameters one may configure their listener with, by using 
 This project was developed via Maven, and used the following dependencies as libraries:
 
  - **Google Firebase** - com.google.firebase, firebase-admin
- - **firebase4j** - com.github.bane73, firebase4j
+ - **[firebase4j](https://github.com/bane73/firebase4j)** - com.github.bane73, firebase4j
  - **Google Gson** - com.google.code.gson, gson
  
 One must install such dependencies within their project to allow the implementation of this tool.
