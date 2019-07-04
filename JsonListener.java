@@ -46,8 +46,8 @@ public class JsonListener {
     private PrintWriter failedFilesLog;
     // An idle flag, which indicates if events are being processed or not
     private boolean idle;
-    // A ready flag, which indicates if the listener is ready to receive events
-    private boolean ready;
+    // A listening flag, which may be toggled to stop the listener and indicates if the listener is ready to receive events.
+    private boolean listen;
 
     /* One constructs a JsonListener with a FirebaseConnection object (used to post to the database),
        the Path object storing the local directory of JSON files,
@@ -75,8 +75,8 @@ public class JsonListener {
         fh.setFormatter(formatter);
         // The listener is initially idle
         this.idle = true;
-        // The listener is initially not ready
-        this.ready = false;
+        // The listener is not initially listening
+        this.listen = false;
     }
 
     /* The main listener method, which listen indefinitely.
@@ -92,9 +92,8 @@ public class JsonListener {
             return;
         }
         // The WatchKey is now polling events, therefore the listener is ready to recieve events
-        this.ready = true;
-        // Indefinite polling loop
-        while (true) {
+        this.listen = true;
+        while (listen) {
             // Firstly attempt to delay for the given pollCooldown
             try {
                 Thread.sleep(pollCooldown);
@@ -167,7 +166,7 @@ public class JsonListener {
             }
         }
         // Finished running listener, therefore not ready to recieve events
-        this.ready = false;
+        this.listen = false;
     }
 
     /* Polls a file until it becomes unlocked for a specified number of tries.
@@ -275,8 +274,13 @@ public class JsonListener {
         return this.idle;
     }
 
-    // Getter for the ready status of the listener
-    public boolean isReady() {
-        return this.ready;
+    // Getter for the listening status of the listener
+    public boolean isListening() {
+        return this.listen;
+    }
+
+    // Stops the listener by setting listen flag to false
+    public void stop() {
+        this.listen = false;
     }
 }
