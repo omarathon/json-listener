@@ -16,10 +16,10 @@ The listener may be run with the above data, listening in the input directory an
 
 There are additional parameters one may configure their listener with, by using the associated **mutator methods** on their **JsonListener object** (they are *set to defaults* upon initialization):
 
- - **Max Threads** - set the maximum threads useable by the JVM while running the listener (it uses a potentially unbounded amount of threads if polling many locked files simultaneously). **Default Value:** 100. **Mutator Method**: setMaxThreads.
- - **Max Locked File Tries** - The maxiumum number of attempts at polling a locked file to await its unlock. **Default Value:** 100. **Mutator Method**: setLockedFileTries.
- - **Poll Cooldown** - The listener's cooldown between each poll for FILE_CREATE events, in milliseconds. **Default Value:** 100. **Mutator Method**: setPollCooldown.
- - **Locked File Poll Cooldown** - The cooldown between each poll checking whether a locked file has became unlocked, in milliseconds. **Default Value:** 100. **Mutator Method**: setLockedFilePollCooldown.
+ - **Max Threads** - set the maximum threads useable by the JVM while running the listener (it uses a potentially unbounded amount of threads if polling many locked files simultaneously). **Default Value:** **100**. **Mutator Method**: **setMaxThreads**.
+ - **Max Locked File Tries** - The maxiumum number of attempts at polling a locked file to await its unlock. **Default Value:** **100**. **Mutator Method**: **setLockedFileTries**.
+ - **Poll Cooldown** - The listener's cooldown between each poll for FILE_CREATE events, in milliseconds. **Default Value:** **100**. **Mutator Method**: **setPollCooldown**.
+ - **Locked File Poll Cooldown** - The cooldown between each poll checking whether a locked file has became unlocked, in milliseconds. **Default Value:** **100**. **Mutator Method**: **setLockedFilePollCooldown**.
 ## Dependencies
 
 This project was developed via Maven, and used the following dependencies as libraries:
