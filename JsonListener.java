@@ -46,6 +46,8 @@ public class JsonListener {
     private PrintWriter failedFilesLog;
     // An idle flag, which indicates if events are being processed or not
     private boolean idle;
+    // A ready flag, which indicates if the listener is ready to receive events
+    private boolean ready;
 
     /* One constructs a JsonListener with a FirebaseConnection object (used to post to the database),
        the Path object storing the local directory of JSON files,
@@ -58,9 +60,6 @@ public class JsonListener {
         // Set the passed path and dbDirectory as dir and dbDirectory respectfully.
         this.dir = path;
         this.dbDirectory = dbDirectory;
-        // Construct a WatchService object, and register to the directory the watcher and the ENTRY_CREATE event. Obtain a WatchKey for the directory, and set this to the key attribute for the object.
-        WatchService watcher = FileSystems.getDefault().newWatchService();
-        this.key = dir.register(watcher, ENTRY_CREATE);
         // Initialise failedFiles as an empty priority queue.
         failedFiles = new PriorityQueue<>();
         // Initialise failedFilesLog as a PrintWriter at the given logDirectory
@@ -76,11 +75,24 @@ public class JsonListener {
         fh.setFormatter(formatter);
         // The listener is initially idle
         this.idle = true;
+        // The listener is initially not ready
+        this.ready = false;
     }
 
     /* The main listener method, which listen indefinitely.
        Therefore, one is advised to run this method on a new thread. */
     public void runListener() {
+        // Construct a WatchService object, and register to the directory the watcher and the ENTRY_CREATE event. Obtain a WatchKey for the directory, and set this to the key attribute for the object.
+        try {
+            WatchService watcher = FileSystems.getDefault().newWatchService();
+            this.key = dir.register(watcher, ENTRY_CREATE);
+        }
+        catch (IOException e) { // Failed to construct WatchKey, so terminate
+            log.severe("[FATAL ERROR] Failed to construct WatchKey!");
+            return;
+        }
+        // The WatchKey is now polling events, therefore the listener is ready to recieve events
+        this.ready = true;
         // Indefinite polling loop
         while (true) {
             // Firstly attempt to delay for the given pollCooldown
@@ -154,6 +166,8 @@ public class JsonListener {
                 break;
             }
         }
+        // Finished running listener, therefore not ready to recieve events
+        this.ready = false;
     }
 
     /* Polls a file until it becomes unlocked for a specified number of tries.
@@ -259,5 +273,10 @@ public class JsonListener {
     // Getter for the idle status of the listener
     public boolean isIdle() {
         return this.idle;
+    }
+
+    // Getter for the ready status of the listener
+    public boolean isReady() {
+        return this.ready;
     }
 }
