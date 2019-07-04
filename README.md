@@ -2,6 +2,15 @@
 
 A tool to *indefinitely listen to the creation of .json files in a directory* and *automatically upload them to a Google Firebase*, utilising [FirebasePostJson](https://github.com/omarathon/firebase-post-json).
 
+## Functionality
+
+# Inputs
+ - FirebaseConnection object, which may be intialised as in **Example.java** (or see lib/FirebaseConnection.java) - this is to allow a connection to a Google Firebase.
+ - Directory to listen for files in.
+ - Directory to generate the logs in.
+ 
+The listener may be run with the above data, listening in the input directory and generating a log within the input log directory.
+
 ## Dependencies
 
 This project was developed via Maven, and used the following dependencies as libraries:
