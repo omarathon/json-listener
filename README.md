@@ -20,8 +20,13 @@ There are additional parameters one may configure their listener with, by using 
  
  **Default Value:** **100**. **Mutator Method**: **setMaxThreads**.
  - **Max Locked File Tries** - The maxiumum number of attempts at polling a locked file to await its unlock. **Default Value:** **100**. **Mutator Method**: **setLockedFileTries**.
- - **Poll Cooldown** - The listener's cooldown between each poll for FILE_CREATE events, in milliseconds. **Default Value:** **100**. **Mutator Method**: **setPollCooldown**.
- - **Locked File Poll Cooldown** - The cooldown between each poll checking whether a locked file has became unlocked, in milliseconds. **Default Value:** **100**. **Mutator Method**: **setLockedFilePollCooldown**.
+ - **Poll Cooldown** - The listener's cooldown between each poll for FILE_CREATE events, in milliseconds. 
+ 
+ **Default Value:** **100**. **Mutator Method**: **setPollCooldown**.
+ - **Locked File Poll Cooldown** - The cooldown between each poll checking whether a locked file has became unlocked, in milliseconds. 
+ 
+ **Default Value:** **100**. **Mutator Method**: **setLockedFilePollCooldown**.
+ 
 ## Dependencies
 
 This project was developed via Maven, and used the following dependencies as libraries:
