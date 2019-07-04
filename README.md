@@ -4,7 +4,8 @@ A tool to *indefinitely listen to the creation of .json files in a directory* an
 
 ## Functionality
 
-# Inputs
+Inputs:
+
  - FirebaseConnection object, which may be intialised as in **Example.java** (or see lib/FirebaseConnection.java) - this is to allow a connection to a Google Firebase.
  - Directory to listen for files in.
  - Directory to generate the logs in.
