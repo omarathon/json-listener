@@ -10,7 +10,7 @@ Inputs:
  - Directory to listen for files in.
  - Directory to generate the logs in.
  
-The listener may be run with the above data, listening in the input directory and generating a log within the input log directory.
+The listener may be run with the above data, listening in the input directory and generating a log within the input log directory. One is advisted to **run the listener in its own thread**, then to stop it by calling its **stop method**.
 
 ## Additional Listener Configuation
 
