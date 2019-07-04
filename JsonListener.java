@@ -44,6 +44,8 @@ public class JsonListener {
     private Logger log;
     // The PrintWriter object used to write to the file storing the failed JSON uploads
     private PrintWriter failedFilesLog;
+    // An idle flag, which indicates if events are being processed or not
+    private boolean idle;
 
     /* One constructs a JsonListener with a FirebaseConnection object (used to post to the database),
        the Path object storing the local directory of JSON files,
@@ -72,6 +74,8 @@ public class JsonListener {
         this.log.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();
         fh.setFormatter(formatter);
+        // The listener is initially idle
+        this.idle = true;
     }
 
     /* The main listener method, which listen indefinitely.
@@ -89,6 +93,8 @@ public class JsonListener {
             }
             // Iterate over each event polled by the WatchKey
             for (WatchEvent<?> event: key.pollEvents()) {
+                // Not idle, since processing an event
+                idle = false;
                 WatchEvent.Kind<?> kind = event.kind();
                 // If an event is lost or discarded, an OVERFLOW event is generatated, in which case skip the event.
                 if (kind == OVERFLOW) continue;
@@ -139,6 +145,8 @@ public class JsonListener {
                     }
                 }
             }
+            // Now may be idle, as have processed all events
+            idle = true;
             // Reset the key. If the key is no longer valid, the directory is inaccessible so exit the loop.
             boolean valid = key.reset();
             if (!valid) {
@@ -246,5 +254,10 @@ public class JsonListener {
     // Getter for locked file poll cooldown
     public int getLockedFilePollCooldown() {
         return this.lockedFilePollCooldown;
+    }
+
+    // Getter for the idle status of the listener
+    public boolean isIdle() {
+        return this.idle;
     }
 }
