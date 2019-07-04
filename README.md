@@ -12,6 +12,8 @@ Inputs:
  
 The listener may be run with the above data, listening in the input directory and generating a log within the input log directory. One is advisted to **run the listener in its own thread**, then to stop it by calling its **stop method**.
 
+One may **schedule** the call to the **stop method**, to listen for a set amount of time. An example of such may be found in **ExampleMultithreading.java**.
+
 ## Additional Listener Configuation
 
 There are additional parameters one may configure their listener with, by using the associated **mutator methods** on their **JsonListener object** (they are *set to defaults* upon initialization):
@@ -84,6 +86,7 @@ One may use this tool by adding the above dependencies to their project, and sto
 ## Main Files
  - **JsonListener.java** - The central file, listens in a directory indefinitely and posts a JSON file to a Google Firebase when a json file is created there.
  - **Example.java** - An examplar use of JsonListener.
+ - **ExampleMultithreading.java** - An examplar use of multithreading JsonListener.
  
 ## Auxiliary Files
 
